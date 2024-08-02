@@ -58,6 +58,7 @@ It supports various input methods including image upload, video upload, webcam, 
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
+## License [FOR NOW]
 
-This project is open source and available under the [MIT License](LICENSE).
+For the benefit of the public, this project is open source and available under the unlicense terms.
+This License can change at any moment, please check this on future versions of XYZ Vision.
