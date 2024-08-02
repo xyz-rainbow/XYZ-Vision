@@ -1,0 +1,8 @@
+gradio
+ultralytics
+opencv-python
+torch
+torchvision
+pytube
+mss
+Pillow
