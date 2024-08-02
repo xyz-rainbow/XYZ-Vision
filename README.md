@@ -17,7 +17,7 @@ It supports various input methods including image upload, video upload, webcam, 
 
 1. Clone this repository:
    ```
-   git clone https://github.com/rainbowkode/XYZ-Vision)
+   git clone https://github.com/rainbowkode/XYZ-Vision
    cd XYZ-Vision
    ```
 
@@ -43,8 +43,8 @@ It supports various input methods including image upload, video upload, webcam, 
 ## Notes
 
 - Ensure you have a CUDA-capable GPU for faster processing (optional but recommended) can work with only a CPU if needed.
-- The application will download the selected YOLOv8 model if it's not already present in the working directory.
-- For YouTube video processing, ensure you have a stable internet connection.
+- The application will download the selected model if it's not already present in the working directory.
+- #NOTWORKINGFORNOW - For YouTube video processing, ensure you have a stable internet connection.
 
 ## Future Improvements
 
