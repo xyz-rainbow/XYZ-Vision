@@ -1,26 +1,29 @@
-# YOLOv8 Object Detection UI
+# XYZ Vision - Object Detection UI
 
-This project provides a user interface for YOLOv8 object detection using Gradio. It supports various input methods including image upload, video upload, webcam, screen capture, and YouTube video processing.
+This project provides a user interface for object detection using YOLO models. 
+
+It supports various input methods including image upload, video upload, webcam, screen capture, and YouTube video processing.
 
 ## Features
 
-- Support for multiple YOLOv8 models (nano, small, medium, large, xlarge)
+- Support for multiple YOLO models (nano, small, medium, large, xlarge)
 - Image object detection with confidence and IoU thresholds
 - Video object detection with adjustable processing speed
 - Real-time object detection from webcam or screen capture
-- YouTube video processing
+- YouTube video processing #NOTWORKINGFORNOW
 - Text description of detected objects
 
 ## Installation
 
 1. Clone this repository:
    ```
-   git clone https://github.com/your-username/yolov8-object-detection-ui.git
-   cd yolov8-object-detection-ui
+   git clone https://github.com/rainbowkode/XYZ-Vision)
+   cd XYZ-Vision
    ```
 
-2. Install the required dependencies:
+2. Install the required dependencies and requirements:
    ```
+   pip install -r requirements.txt
    python install-dependencies.py
    ```
 
@@ -39,7 +42,7 @@ This project provides a user interface for YOLOv8 object detection using Gradio.
 
 ## Notes
 
-- Ensure you have a CUDA-capable GPU for faster processing (optional but recommended).
+- Ensure you have a CUDA-capable GPU for faster processing (optional but recommended) can work with only a CPU if needed.
 - The application will download the selected YOLOv8 model if it's not already present in the working directory.
 - For YouTube video processing, ensure you have a stable internet connection.
 
