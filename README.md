@@ -1,19 +1,26 @@
-# XYZ Vision - Object Detection UI
+# XYZ Vision - Gradio WebUI for YOLO (ultralytics)
 
-This project provides a user interface for object detection using YOLO models. 
+   This project provides a user interface for object detection using YOLO models. 
 
-It supports various input methods including image upload, video upload, webcam, screen capture, and YouTube video processing.
+## Input methods including:
+   
+   - Image upload
+   - Video upload
+   - Real-time Webcam
+   - Screen capture
+   - YouTube video processing. # Not Avaiable
 
 ## Features
 
-- Support for multiple YOLO models (nano, small, medium, large, xlarge)
-- Image object detection with confidence and IoU thresholds
-- Video object detection with adjustable processing speed
-- Real-time object detection from webcam or screen capture
-- YouTube video processing #NOTWORKINGFORNOW
-- Text description of detected objects
+   - **Real-time object detection** from webcam or screen capture
+   - It can work with **GPU** (Prefered) And it supports **"CPU Only"** if needed.
+   - Support for **multiple YOLO models** *(nano, small, medium, large, xlarge)*
+   - **Image object detection** with confidence and IoU thresholds
+   - **Video object detection** with adjustable processing speed
+   - *YouTube video processing* **#NOTWORKINGFORNOW**
+   - **Text description of detected objects** # Maybe not working
 
-## Installation
+## **Installation**
 
 1. Clone this repository:
    ```
@@ -23,26 +30,31 @@ It supports various input methods including image upload, video upload, webcam, 
 
 2. Install the required dependencies and requirements:
    ```
-   pip install -r requirements.txt
-   python install-dependencies.py
+   pip install -r requirements.txt # Prefered
+      # OR
+   python install-dependencies.py # if not workin, try "python3" or "py"
    ```
 
-## Usage
+## **Usage**
 
 1. Run the application:
    ```
    python app.py
+      #OR
+   ./app.py
    ```
 
 2. Open your web browser and go to the URL displayed in the terminal (usually `http://localhost:7860`).
 
-3. Use the interface to select the desired input method and adjust detection parameters.
+3. Use the interface and select your desired input method
 
-4. Click the corresponding button to start object detection.
+4. Adjust the detection parameters.
 
-## Notes
+6. Click the corresponding button to start object detection.
 
-- Ensure you have a CUDA-capable GPU for faster processing (optional but recommended) can work with only a CPU if needed.
+## *Notes*
+
+- Ensure you have a CUDA-capable **GPU for faster processing** (optional but recommended)
 - The application will download the selected model if it's not already present in the working directory.
 - #NOTWORKINGFORNOW - For YouTube video processing, ensure you have a stable internet connection.
 
