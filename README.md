@@ -1,6 +1,14 @@
 # XYZ Vision - Gradio WebUI for YOLO (ultralytics)
 
-   This project provides a user interface for object detection using YOLO models. 
+<p align="center">
+  <img alt="python" src="https://img.shields.io/badge/python-3.x-00f0ff?style=flat-square&logo=python&logoColor=white">
+  <img alt="gradio" src="https://img.shields.io/badge/Gradio-WebUI-ff2bd6?style=flat-square">
+  <img alt="yolo" src="https://img.shields.io/badge/YOLO-Ultralytics-c8ff00?style=flat-square">
+  <img alt="vision" src="https://img.shields.io/badge/computer%20vision-00f0ff?style=flat-square">
+  <img alt="license" src="https://img.shields.io/badge/license-Unlicense-6b7280?style=flat-square">
+</p>
+
+This project provides a Gradio UI for object detection using YOLO (Ultralytics) models.
 
 ## Input methods including:
    
@@ -24,7 +32,7 @@
 
 1. Clone this repository:
    ```
-   git clone https://github.com/rainbowkode/XYZ-Vision
+   git clone https://github.com/xyz-rainbow/XYZ-Vision
    cd XYZ-Vision
    ```
 
