@@ -1,0 +1,6 @@
+venv/
+venv2/
+*.pt
+__pycache__/
+*.pyc
+plan.md
