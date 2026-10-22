@@ -12,22 +12,29 @@ from PIL import Image
 import mss
 
 # Ensure GPU usage if available
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
+if torch.cuda.is_available():
+    device = 'cuda'
+elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+    device = 'mps'
+else:
+    device = 'cpu'
 print(f"Using device: {device}")
 
 # Initialize YOLOv8 model
 model = None
+current_model_name = None
 available_models = ['yolov8n.pt', 'yolov8s.pt', 'yolov8m.pt', 'yolov8l.pt', 'yolov8x.pt']
 
 def load_model(model_name):
-    global model
+    global model, current_model_name
     model = YOLO(model_name).to(device)
+    current_model_name = model_name
 
 load_model(available_models[0])  # Load default model
 
 def process_image(input_image, conf_threshold, iou_threshold, selected_model):
-    global model
-    if model is None or model.model.names[0] != selected_model:
+    global model, current_model_name
+    if model is None or current_model_name != selected_model:
         load_model(selected_model)
     
     results = model(input_image, conf=conf_threshold, iou=iou_threshold)
@@ -39,11 +46,11 @@ def process_image(input_image, conf_threshold, iou_threshold, selected_model):
     return annotated_image, description
 
 def process_video(input_video, conf_threshold, iou_threshold, speed_factor, selected_model):
-    global model
-    if model is None or model.model.names[0] != selected_model:
+    global model, current_model_name
+    if model is None or current_model_name != selected_model:
         load_model(selected_model)
     
-    output_path = tempfile.mktemp('.mp4')
+    output_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
     
     cap = cv2.VideoCapture(input_video)
     fps = int(cap.get(cv2.CAP_PROP_FPS))
@@ -86,12 +93,14 @@ def process_video(input_video, conf_threshold, iou_threshold, speed_factor, sele
     return output_path
 
 def realtime_detection(conf_threshold, iou_threshold, selected_model, input_source):
-    global model
-    if model is None or model.model.names[0] != selected_model:
+    global model, current_model_name
+    if model is None or current_model_name != selected_model:
         load_model(selected_model)
     
     if input_source == "Webcam":
         cap = cv2.VideoCapture(0)
+        if not cap.isOpened():
+            raise ValueError("Could not open webcam")
     elif input_source == "Screen Capture":
         sct = mss.mss()
         monitor = sct.monitors[0]
@@ -125,6 +134,8 @@ def generate_description(result):
 def process_youtube_video(youtube_url, conf_threshold, iou_threshold, speed_factor, selected_model):
     yt = YouTube(youtube_url)
     stream = yt.streams.filter(progressive=True, file_extension='mp4').first()
+    if stream is None:
+        raise ValueError("No suitable mp4 stream found for this YouTube video")
     video_path = stream.download(output_path=tempfile.gettempdir())
     
     return process_video(video_path, conf_threshold, iou_threshold, speed_factor, selected_model)
@@ -180,4 +191,5 @@ with gr.Blocks() as demo:
     realtime_button.click(realtime_detection, inputs=[realtime_conf_slider, realtime_iou_slider, model_dropdown, input_source], outputs=realtime_output)
     youtube_button.click(process_youtube_video, inputs=[youtube_url, video_conf_slider, video_iou_slider, speed_slider, model_dropdown], outputs=youtube_output)
 
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()
