@@ -14,7 +14,7 @@ import mss
 # Ensure GPU usage if available
 if torch.cuda.is_available():
     device = 'cuda'
-elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+elif hasattr(torch, 'backends') and hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
     device = 'mps'
 else:
     device = 'cpu'
@@ -50,10 +50,16 @@ def process_video(input_video, conf_threshold, iou_threshold, speed_factor, sele
     if model is None or current_model_name != selected_model:
         load_model(selected_model)
     
-    output_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
+    fd, output_path = tempfile.mkstemp(suffix='.mp4')
+    os.close(fd)
     
     cap = cv2.VideoCapture(input_video)
+    if not cap.isOpened():
+        raise ValueError("Could not open video file or stream")
+
     fps = int(cap.get(cv2.CAP_PROP_FPS))
+    if fps <= 0:
+        fps = 30 # fallback for zero or negative fps
     w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     
@@ -63,32 +69,38 @@ def process_video(input_video, conf_threshold, iou_threshold, speed_factor, sele
     frames = []
     frame_count = 0
 
-    while cap.isOpened():
-        ret, frame = cap.read()
-        if not ret:
-            break
-        
-        frame_count += 1
-        if frame_count % max(1, int(1/speed_factor)) != 0:
-            continue
-        
-        frames.append(frame)
-        
-        if len(frames) == batch_size:
+    try:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            frame_count += 1
+            if frame_count % max(1, int(1/speed_factor)) != 0:
+                continue
+
+            frames.append(frame)
+
+            if len(frames) == batch_size:
+                start_time = time.perf_counter()
+                results = model(frames, conf=conf_threshold, iou=iou_threshold)
+                for r in results:
+                    out.write(r.plot())
+                frames = []
+
+                if fps > 0:
+                    elapsed = time.perf_counter() - start_time
+                    target = batch_size / fps / speed_factor
+                    time.sleep(max(0, target - elapsed))
+
+        if frames:
             results = model(frames, conf=conf_threshold, iou=iou_threshold)
             for r in results:
                 out.write(r.plot())
-            frames = []
 
-        time.sleep(max(0, (1/fps/speed_factor) - (time.time() - time.perf_counter())))
-
-    if frames:
-        results = model(frames, conf=conf_threshold, iou=iou_threshold)
-        for r in results:
-            out.write(r.plot())
-
-    cap.release()
-    out.release()
+    finally:
+        cap.release()
+        out.release()
     
     return output_path
 
@@ -97,9 +109,13 @@ def realtime_detection(conf_threshold, iou_threshold, selected_model, input_sour
     if model is None or current_model_name != selected_model:
         load_model(selected_model)
     
+    cap = None
+    sct = None
+
     if input_source == "Webcam":
         cap = cv2.VideoCapture(0)
         if not cap.isOpened():
+            if cap: cap.release()
             raise ValueError("Could not open webcam")
     elif input_source == "Screen Capture":
         sct = mss.mss()
@@ -107,17 +123,23 @@ def realtime_detection(conf_threshold, iou_threshold, selected_model, input_sour
     else:
         raise ValueError("Invalid input source")
 
-    while True:
-        if input_source == "Webcam":
-            ret, frame = cap.read()
-            if not ret:
-                break
-        elif input_source == "Screen Capture":
-            frame = np.array(sct.grab(monitor))
-            frame = cv2.cvtColor(frame, cv2.COLOR_RGBA2RGB)
+    try:
+        while True:
+            if input_source == "Webcam":
+                ret, frame = cap.read()
+                if not ret:
+                    break
+            elif input_source == "Screen Capture":
+                frame = np.array(sct.grab(monitor))
+                frame = cv2.cvtColor(frame, cv2.COLOR_RGBA2RGB)
 
-        results = model(frame, conf=conf_threshold, iou=iou_threshold)
-        yield results[0].plot()
+            results = model(frame, conf=conf_threshold, iou=iou_threshold)
+            yield results[0].plot()
+    finally:
+        if cap is not None:
+            cap.release()
+        if sct is not None:
+            sct.close()
 
 def generate_description(result):
     classes = result.names
@@ -138,7 +160,15 @@ def process_youtube_video(youtube_url, conf_threshold, iou_threshold, speed_fact
         raise ValueError("No suitable mp4 stream found for this YouTube video")
     video_path = stream.download(output_path=tempfile.gettempdir())
     
-    return process_video(video_path, conf_threshold, iou_threshold, speed_factor, selected_model)
+    try:
+        result_path = process_video(video_path, conf_threshold, iou_threshold, speed_factor, selected_model)
+        return result_path
+    finally:
+        if os.path.exists(video_path):
+            try:
+                os.remove(video_path)
+            except OSError:
+                pass
 
 # Gradio Interface
 with gr.Blocks() as demo:
