@@ -33,6 +33,9 @@ def load_model(model_name):
 load_model(available_models[0])  # Load default model
 
 def process_image(input_image, conf_threshold, iou_threshold, selected_model):
+    if input_image is None:
+        return None, "No image provided"
+
     global model, current_model_name
     if model is None or current_model_name != selected_model:
         load_model(selected_model)
@@ -46,6 +49,9 @@ def process_image(input_image, conf_threshold, iou_threshold, selected_model):
     return annotated_image, description
 
 def process_video(input_video, conf_threshold, iou_threshold, speed_factor, selected_model):
+    if input_video is None:
+        return None
+
     global model, current_model_name
     if model is None or current_model_name != selected_model:
         load_model(selected_model)
@@ -154,6 +160,9 @@ def generate_description(result):
     return description
 
 def process_youtube_video(youtube_url, conf_threshold, iou_threshold, speed_factor, selected_model):
+    if not youtube_url:
+        return None
+
     yt = YouTube(youtube_url)
     stream = yt.streams.filter(progressive=True, file_extension='mp4').first()
     if stream is None:
