@@ -3,6 +3,19 @@ from unittest.mock import MagicMock, patch
 import app
 import os
 
+def test_process_image_none():
+    result, msg = app.process_image(None, 0.5, 0.5, 'yolov8n.pt')
+    assert result is None
+    assert msg == "No image provided"
+
+def test_process_video_none():
+    result = app.process_video(None, 0.5, 0.5, 1.0, 'yolov8n.pt')
+    assert result is None
+
+def test_process_youtube_video_empty():
+    result = app.process_youtube_video("", 0.5, 0.5, 1.0, 'yolov8n.pt')
+    assert result is None
+
 def test_process_video_file_not_found(mocker):
     mock_cv2 = mocker.patch.object(app, 'cv2')
     mock_cap = MagicMock()
