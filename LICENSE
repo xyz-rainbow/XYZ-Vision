@@ -1,24 +1,79 @@
-This is free and unencumbered software released into the public domain.
+Proprietary License
 
-Anyone is free to copy, modify, publish, use, compile, sell, or
-distribute this software, either in source code form or as a compiled
-binary, for any purpose, commercial or non-commercial, and by any
-means.
+Copyright (c) 2026 Rainbow Technology (xyz-rainbow). All rights reserved.
 
-In jurisdictions that recognize copyright laws, the author or authors
-of this software dedicate any and all copyright interest in the
-software to the public domain. We make this dedication for the benefit
-of the public at large and to the detriment of our heirs and
-successors. We intend this dedication to be an overt act of
-relinquishment in perpetuity of all present and future rights to this
-software under copyright law.
+This software and all associated files, documentation, and other materials
+(the "Software") are the exclusive property of Rainbow Technology, operating
+on GitHub as xyz-rainbow (together, the "Owner").
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
+1. Permitted viewing
 
-For more information, please refer to <https://unlicense.org>
+The Software may be viewed and evaluated in this repository solely for the
+purpose of reviewing, studying, or assessing it. That permission does not
+grant any other right in the Software.
+
+2. Restrictions
+
+Except as expressly allowed in section 3, you may not, without the Owner's
+prior written permission:
+
+  a. copy, reproduce, or redistribute the Software, in whole or in part;
+  b. sublicense, sell, lease, or otherwise transfer the Software;
+  c. publish forks, mirrors, or derivative works; or
+  d. use the Software for any commercial purpose or in production.
+
+3. Issues, pull requests, and GitHub forks
+
+Issues, discussions, and pull requests against this repository are welcome.
+
+A fork of this repository on GitHub is permitted only to the extent required
+to prepare and submit pull requests back to this repository, as contemplated
+by GitHub's Terms of Service. Such a fork may not be used as a distribution
+channel, a competing project, or for any purpose other than contributing
+here.
+
+4. Contributions
+
+By submitting a contribution (including a pull request, patch, issue with
+code, comment, or other material), you assign to Rainbow Technology all
+right, title, and interest in and to that contribution, including all
+intellectual property rights. If an assignment is not effective under
+applicable law, you grant Rainbow Technology a perpetual, irrevocable,
+worldwide, exclusive, royalty-free, fully paid-up, transferable, and
+sublicensable license to use, reproduce, modify, create derivative works of,
+distribute, publicly display, publicly perform, and otherwise exploit the
+contribution in any manner and for any purpose, without restriction.
+
+You represent and warrant that you have the right to make the contribution
+and to grant the rights above, and that the contribution does not infringe
+the rights of any third party.
+
+5. No warranty and limitation of liability
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. IN NO EVENT SHALL
+THE OWNER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+------------------------------------------------------------------------------
+
+Resumen en español
+
+Copyright (c) 2026 Rainbow Technology (xyz-rainbow). Todos los derechos
+reservados.
+
+El código es visible únicamente para verlo y evaluarlo. Queda prohibido
+copiarlo, redistribuirlo, sublicenciarlo, publicar forks o trabajos derivados,
+y cualquier uso comercial o en producción, salvo permiso escrito del titular.
+Se admiten issues y pull requests. El fork en GitHub queda permitido
+únicamente para preparar pull requests hacia este repositorio, como exigen
+los términos de GitHub.
+
+Quien contribuye cede a Rainbow Technology todos los derechos sobre lo que
+aporta; si esa cesión no fuera eficaz, le concede una licencia perpetua,
+irrevocable y exclusiva, y garantiza que tiene derecho a aportarlo.
+
+El software se ofrece «tal cual», sin garantía, y el titular no asume
+responsabilidad por su uso.
