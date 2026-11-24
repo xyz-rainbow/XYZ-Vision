@@ -5,7 +5,7 @@
   <img alt="gradio" src="https://img.shields.io/badge/Gradio-WebUI-ff2bd6?style=flat-square">
   <img alt="yolo" src="https://img.shields.io/badge/YOLO-Ultralytics-c8ff00?style=flat-square">
   <img alt="vision" src="https://img.shields.io/badge/computer%20vision-00f0ff?style=flat-square">
-  <img alt="license" src="https://img.shields.io/badge/license-proprietary-red?style=flat-square">
+  <img alt="License: Proprietary" src="https://img.shields.io/badge/license-Proprietary-red?style=flat-square">
 </p>
 
 This project provides a Gradio UI for object detection using YOLO (Ultralytics) models.
