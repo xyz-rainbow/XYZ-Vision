@@ -5,7 +5,7 @@
   <img alt="gradio" src="https://img.shields.io/badge/Gradio-WebUI-ff2bd6?style=flat-square">
   <img alt="yolo" src="https://img.shields.io/badge/YOLO-Ultralytics-c8ff00?style=flat-square">
   <img alt="vision" src="https://img.shields.io/badge/computer%20vision-00f0ff?style=flat-square">
-  <img alt="license" src="https://img.shields.io/badge/license-Unlicense-6b7280?style=flat-square">
+  <img alt="license" src="https://img.shields.io/badge/license-proprietary-red?style=flat-square">
 </p>
 
 This project provides a Gradio UI for object detection using YOLO (Ultralytics) models.
@@ -78,7 +78,10 @@ This project provides a Gradio UI for object detection using YOLO (Ultralytics) 
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License [FOR NOW]
+## Licencia
 
-For the benefit of the public, this project is open source and available under the unlicense terms.
-This License can change at any moment, please check this on future versions of XYZ Vision.
+Propietaria — todos los derechos reservados. Copyright (c) 2026 Rainbow Technology (xyz-rainbow).
+
+El código se puede ver y evaluar en este repositorio. Queda prohibido copiarlo, redistribuirlo, sublicenciarlo, publicar forks o trabajos derivados, y cualquier uso comercial o en producción, salvo permiso escrito. Se admiten issues y pull requests. El fork en GitHub solo está permitido para preparar pull requests hacia este repositorio.
+
+Consulta [LICENSE](LICENSE) para el texto completo, incluida la cesión de contribuciones, y [CONTRIBUTING.es.md](CONTRIBUTING.es.md) si quieres enviar un cambio.
